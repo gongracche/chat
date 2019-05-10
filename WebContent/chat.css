@@ -1,0 +1,145 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+}
+
+#chat-container {
+	/* height: 600px;*/
+	/* height: 100%; */
+	height: calc(100% - 107px);
+	width: 100%;
+	background-color: #eee;
+}
+
+#chat-container-left {
+		float: left;
+}
+
+#chat-header {
+	padding: 6px;
+	font-size: 16px;
+	height: 34px;
+	background: #ddd;
+	border: 1px solid #ccc;
+}
+
+	#chat-user-status {
+		float: left;
+	}
+
+	#chat-status-icon {
+		float: left;
+		line-height: 2em;
+	}
+
+	#chat-user-name {
+		float: left;
+		line-height: 2em;
+		padding-left: 8px;
+	}
+
+#chat-messges {
+	overflow: auto;
+	height: 100%;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	background-color: #eee;
+	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;
+}
+
+	.chat-message {
+		margin: 0px;
+		padding: 0 14px;
+		font-size: 16px;
+		word-wrap: break-word;
+		white-space: normal;
+	}
+
+	.chat-message-left {
+		float: left;
+		line-height: 1.3em;
+	}
+
+		.chat-message-left .chat-message-box {
+			color: #333;
+			background: #fff;
+			border: 2px solid #13178E;
+			border-radius: 30px 30px 30px 0px;
+			margin-right: 50px;
+		}
+
+	.chat-message-right {
+		float: right;
+		line-height: 1.3em;
+	}
+
+		.chat-message-right .chat-message-box {
+			color: #fff;
+			background: #13178E;
+			border: 2px solid #13178E;
+			border-radius: 30px 30px 0px 30px;
+			margin-left: 50px;
+		}
+
+	.chat-message-box {
+		margin-top: 20px;
+		max-width: 600px;
+		font-size: 16px;
+	}
+
+	.chat-message-content {
+		padding: 20px;
+	}
+
+	.chat-message-text {
+
+	}
+
+	.chat-messge-clear {
+		clear: both;
+	}
+
+#chat-send {
+	background-color: #ddd;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	height: 48px;
+	padding: 4px;
+}
+
+	#chat-send-message {
+		width: calc(100% - 90px);
+		line-height: 16px;
+		height: 32px;
+		padding: 14px 6px 0px 6px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		text-align: left;
+		box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;azimuth:
+		box-sizing: border-box;
+	}
+
+	#chat-send-btn {
+		width: 72px;
+		height: 48px;
+		font-size: 16px;
+		line-height: 3em;
+		float: right;;
+		color: #fff;
+		font-weight: bold;
+		background: #bcbcbc;
+		text-align: center;
+		border: 1px solid #bbb;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+
+	#chat-send-btn:hover {
+		background: #13178E;
+		cursor: pointer;
+	}
