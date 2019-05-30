@@ -17,25 +17,28 @@ var printMessage = ( function(message, position) {
 	p('</div>');
 	p('<div class="chat-messge-clear"></div>');
 
-	$('#chat-messges').append(chatDom.join(''));
+	$('#chat-messages').append(chatDom.join(''));
 } );
 
-$(document).ready(function(){
+var printUser = ( function () {
 	chatDom = [];
-	p('<div id="chat-header">');
 	p('<div id="chat-user-status">');
 	p('<div id="chat-status-icon">●</div>');
-	p('<div id="chat-user-name">ユーザー</div>');
+	p('<div id="chat-user-name">ユーザ</div>');
 	p('</div>');
-	p('</div>');
-	p('<div id="chat-messges">');
-	p('</div>');
-	p('<div id="chat-send">');
+	$('#chat-user').append(chatDom.join(''));
+});
+
+var printSender = ( function () {
+	chatDom = [];
 	p('<textarea id="chat-send-message"></textarea>');
 	p('<div id="chat-send-btn">送信</div>');
-	p('</div>');
-	$('#chat-container').append(chatDom.join(''));
+	$('#chat-sender').append(chatDom.join(''));
+});
 
+$(document).ready(function(){
+	printUser();
+	printSender();
 	connectServer();
 });
 

@@ -3,16 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<link href="./chat.css" rel="stylesheet" type="text/css">
+<link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id="room-chat-container">
+	<div id="chat-user"></div>
+	<div id="room-container-left">
 		<div id="room-container">
+			<div id="room"></div>
+			<div id="rooms"></div>
 		</div>
-		<div id="chat-container">
-		</div>
+		<div id="room-creator"></div>
 	</div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./chat.js"></script>
+	<div id="room-container-right">
+		<div id="room-chat-container">
+			<div id="chat-messages"></div>
+		</div>
+		<div id="chat-sender"></div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./roomchat.js"></script>
 </body>
 </html>

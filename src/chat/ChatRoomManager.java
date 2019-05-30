@@ -2,55 +2,60 @@ package chat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.websocket.Session;
 
 
 @ApplicationScoped
-public class RoomManager {
+public class ChatRoomManager {
 
 	private final ConcurrentMap<String, Lock>locks = new ConcurrentHashMap<>();
-	private final ConcurrentMap<String, List<Session>> sessions = new ConcurrentHashMap<String, List<Session>>() {
-        public List<Session> get(final Object key) {
-            List<Session> ret = super.get(key);
+	private final ConcurrentMap<String, ChatRoom> rooms = new ConcurrentHashMap<String, ChatRoom>() {
+        public ChatRoom get(final Object key) {
+            ChatRoom ret = super.get(key);
             if (ret == null) {
-                ret = new CopyOnWriteArrayList<>();
                 this.put((String) key, ret);
             }
             return ret;
         }
     };
 
-    public void addSession(final String pRoomDescriptor, final Session pSession) {
-        synchronized (this.getLock(pRoomDescriptor)) {
-            this.sessions.get(pRoomDescriptor).add(pSession);
+    public void addRoom(final ChatRoom room) {
+        synchronized (this.getLock(room.getDescriptor())) {
+            this.rooms.put(room.getDescriptor(), room);
         }
     }
 
-    public List<Session> getSessions(final String pRoomDescriptor) {
-        return this.sessions.get(pRoomDescriptor);
+    public ChatRoom getRoom(final String descriptor) {
+        return this.rooms.get(descriptor);
     }
 
-    public void removeSession(final String pRoomDescriptor, final Session pSession) {
-        synchronized (this.getLock(pRoomDescriptor)) {
-            this.sessions.get(pRoomDescriptor).remove(pSession);
+    public void removeRoom(final ChatRoom room) {
+        synchronized (this.getLock(room.getDescriptor())) {
+            this.rooms.remove(room.getDescriptor());
         }
+    }
+
+    public List<ChatRoom> getRooms() {
+    	List<ChatRoom> rooms = new ArrayList<>();
+
+    	for(String key : this.rooms.keySet()) {
+    		rooms.add(this.rooms.get(key));
+    	}
+    	return rooms;
     }
 
     public List<String> getRoomDescriptors() {
     	List<String> roomDescriptors = new ArrayList<>();
-    	
-    	for(String key : sessions.keySet()) {
+
+    	for(String key : rooms.keySet()) {
     		roomDescriptors.add(key);
     	}
     	return roomDescriptors;
     }
-    
+
     private Lock getLock(final String pRoomDescriptor) {
         final Lock newLock = new Lock();
         final Lock alreadyLock = this.locks.putIfAbsent(pRoomDescriptor, newLock);
